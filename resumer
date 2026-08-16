@@ -1,0 +1,157 @@
+# 📊 Résumé du Projet ENMS (Enterprise Network Management System)
+
+## 🎯 **Objectif du Projet**
+Créer une application de **gestion et monitoring de réseau d'entreprise** avec une interface graphique moderne permettant de :
+- Gérer un inventaire d'équipements réseau
+- Surveiller l'état des équipements (en ligne/hors ligne)
+- Générer des rapports d'audit
+
+---
+
+## 🏗️ **Architecture Technique**
+
+### **Technologies utilisées :**
+- **Python 3.x** - Langage principal
+- **CustomTkinter** - Interface graphique moderne
+- **SQLite** - Base de données légère
+- **ICMP (Ping)** - Monitoring réseau
+
+### **Structure du projet :**
+```
+enterprise-enms/
+├── config/
+│   └── settings.py        # Configuration (thème, timeout, etc.)
+├── core/
+│   ├── database.py        # Gestion SQLite (CRUD)
+│   ├── monitor.py         # Monitoring ICMP (ping)
+│   └── reporter.py        # Génération rapports Markdown
+├── gui/
+│   ├── dashboard_view.py  # Tableau de bord statistiques
+│   ├── devices_view.py    # Gestion des équipements
+│   └── main_window.py     # Fenêtre principale avec navigation
+├── reports/               # Dossier des rapports générés
+├── main.py               # Point d'entrée
+└── requirements.txt      # Dépendances
+```
+
+---
+
+## ⚡ **Fonctionnalités**
+
+### 1. **Gestion des équipements**
+- ✅ Ajouter un équipement (nom, IP, rôle)
+- ✅ Supprimer un équipement
+- ✅ Lister tous les équipements
+- ✅ Rôles prédéfinis : Routeur Core, Switch Distribution, Serveur Web, Firewall
+
+### 2. **Monitoring réseau**
+- ✅ Scan asynchrone des équipements (threading)
+- ✅ Test de connectivité ICMP (ping)
+- ✅ Mise à jour automatique du statut
+- ✅ Affichage en temps réel (En ligne/Hors ligne/Inconnu)
+
+### 3. **Tableau de bord**
+- ✅ Statistiques globales
+- ✅ Nombre total d'équipements
+- ✅ Nombre d'équipements en ligne
+
+### 4. **Reporting**
+- ✅ Génération de rapports Markdown
+- ✅ Statistiques détaillées
+- ✅ Liste complète des équipements avec leur statut
+
+### 5. **Interface utilisateur**
+- ✅ Thème sombre (dark mode)
+- ✅ Navigation latérale (Dashboard ↔ Équipements)
+- ✅ Design moderne avec CustomTkinter
+- ✅ Interface responsive
+
+---
+
+## 💻 **Fonctionnement Technique**
+
+### **Base de données (SQLite)**
+```sql
+CREATE TABLE infrastructure (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    hostname TEXT NOT NULL,
+    ip_address TEXT NOT NULL UNIQUE,
+    role TEXT NOT NULL,
+    status TEXT DEFAULT 'Inconnu',
+    last_seen TEXT DEFAULT 'Jamais'
+)
+```
+
+### **Monitoring (ICMP)**
+- **Windows** : `ping -n 1 -w 1000 IP`
+- **Linux/Mac** : `ping -c 1 -W 1 IP`
+- Timeout configurable dans `settings.py`
+
+### **Rapports Markdown**
+- Générés dans le dossier `reports/`
+- Format tableau avec tous les équipements
+- Statistiques globales automatiques
+
+---
+
+## 🚀 **Comment l'utiliser**
+
+### **Installation :**
+```bash
+pip install -r requirements.txt
+```
+
+### **Lancement :**
+```bash
+python main.py
+```
+
+### **Utilisation :**
+1. **Ajouter un équipement** : Remplir le formulaire et cliquer "Ajouter"
+2. **Scanner le réseau** : Cliquer "Scanner l'infrastructure"
+3. **Voir les statistiques** : Aller dans l'onglet "Dashboard"
+4. **Générer un rapport** : Cliquer "Générer Rapport MD"
+
+---
+
+## 📈 **Points forts**
+
+### **Avantages :**
+- ✅ **Léger et rapide** (SQLite, pas de serveur)
+- ✅ **Multi-plateforme** (Windows, Linux, Mac)
+- ✅ **Interface intuitive** (navigation simple)
+- ✅ **Extensible** (architecture modulaire)
+- ✅ **Asynchrone** (scans non-bloquants)
+- ✅ **Rapports automatiques** (Markdown)
+
+### **Cas d'usage :**
+- **Administrateurs réseau** : Surveillance d'infrastructure
+- **Techniciens** : Gestion d'inventaire
+- **Audit** : Rapports d'état du parc informatique
+
+---
+
+## 🔧 **Maintenance**
+
+### **Fichiers générés :**
+- `config/enms.db` : Base de données SQLite
+- `reports/rapport_infrastructure.md` : Rapports Markdown
+
+### **Nettoyage :**
+```bash
+.\clean.bat  # Windows
+./clean.sh   # Linux/Mac
+```
+
+---
+
+## 🎯 **Conclusion**
+
+Le projet ENMS est une **solution complète et légère** pour la gestion et le monitoring d'un parc informatique. Il combine :
+
+- **Simplicité d'utilisation** (interface graphique intuitive)
+- **Performance** (base de données SQLite, scans asynchrones)
+- **Professionnalisme** (rapports Markdown, interface moderne)
+- **Extensibilité** (architecture modulaire prête à évoluer)
+
+**Idéal pour les petites et moyennes infrastructures nécessitant un outil de monitoring simple mais efficace !** 🚀
