@@ -33,10 +33,10 @@ class DevicesView(ctk.CTkFrame):
         self.actions = ctk.CTkFrame(self, fg_color="transparent")
         self.actions.pack(pady=10, fill="x", padx=10)
 
-        self.btn_scan = ctk.CTkButton(self.actions, text="⚡ Scanner l'infrastructure (Asynchrone)", fg_color="#27ae60", command=self.trigger_scan)
+        self.btn_scan = ctk.CTkButton(self.actions, text=" Scanner l'infrastructure (Asynchrone)", fg_color="#27ae60", command=self.trigger_scan)
         self.btn_scan.pack(side="left", expand=True, fill="x", padx=5)
 
-        self.btn_report = ctk.CTkButton(self.actions, text="📝 Générer Rapport MD", fg_color="#2980b9", command=self.export_report)
+        self.btn_report = ctk.CTkButton(self.actions, text=" Générer Rapport MD", fg_color="#2980b9", command=self.export_report)
         self.btn_report.pack(side="right", padx=5)
 
         self.populate_list()
@@ -81,7 +81,7 @@ class DevicesView(ctk.CTkFrame):
     def finish_scan(self):
         self.populate_list()
         self.update_dash()
-        self.btn_scan.configure(state="normal", text="⚡ Scanner l'infrastructure (Asynchrone)")
+        self.btn_scan.configure(state="normal", text=" Scanner l'infrastructure (Asynchrone)")
 
     def export_report(self):
         nodes = self.db.fetch_nodes()

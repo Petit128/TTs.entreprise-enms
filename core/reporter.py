@@ -9,15 +9,15 @@ def generate_markdown_report(nodes, filename="reports/rapport_infrastructure.md"
     online = sum(1 for n in nodes if n[4] == "En ligne")
     offline = total - online
     
-    content = f"""# 📊 Rapport d'Audit Infrastructure Réseau
+    content = f"""#  Rapport d'Audit Infrastructure Réseau
 Généré automatiquement le : {datetime.now().strftime('%Y-%m-%d à %H:%M:%S')}
 
-## 📈 Statistiques Globales
+##  Statistiques Globales
 - **Total équipements référencés** : {total}
 - **Équipements opérationnels (En ligne)** : {online}
 - **Équipements en panne (Hors ligne)** : {offline}
 
-## 🖥️ État détaillé du parc informatique
+## ️ État détaillé du parc informatique
 
 | Nom d'hôte | Adresse IP | Rôle Système | Statut Actuel | Dernier Scan Réussi |
 | :--- | :--- | :--- | :--- | :--- |

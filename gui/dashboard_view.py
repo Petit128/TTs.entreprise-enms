@@ -5,7 +5,7 @@ class DashboardView(ctk.CTkFrame):
         super().__init__(master, fg_color="transparent")
         self.db = db
         
-        self.lbl = ctk.CTkLabel(self, text="📊 Tableau de bord analytique", font=ctk.CTkFont(size=18, weight="bold"))
+        self.lbl = ctk.CTkLabel(self, text=" Tableau de bord analytique", font=ctk.CTkFont(size=18, weight="bold"))
         self.lbl.pack(pady=15)
 
         self.stats_frame = ctk.CTkFrame(self)
